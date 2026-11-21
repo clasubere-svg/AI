@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class AI {
+public class BagOfWords {
 
     public static void main(String[] args) {
 
@@ -41,7 +41,7 @@ public class AI {
             tokenized.add(words.toArray(new String[0]));
         }
 
-        System.out.println("\n=== After Stop Word Removal ===");
+        System.out.println("\n After Stop Word Removal");
         for (int d = 0; d < numDocs; d++) {
             System.out.println("Doc " + (d + 1) + ": " + Arrays.toString(tokenized.get(d)));
         }
@@ -54,7 +54,7 @@ public class AI {
         List<String> vocab = new ArrayList<>(vocabSet);
         int vocabSize = vocab.size();
 
-        System.out.println("\n=== Master Vocabulary Index ===");
+        System.out.println("\nMaster Vocabulary Index");
         System.out.println("Alphabetical sorting gives a fixed " + vocabSize + "-dimensional feature space.");
         for (int i = 0; i < vocabSize; i++) {
             System.out.println("Index " + i + " : " + vocab.get(i));
@@ -68,19 +68,18 @@ public class AI {
             }
         }
 
-        System.out.println("\n=== Frequency Vectorization (Bag of Words) ===");
+        System.out.println("\nFrequency Vectorization (Bag of Words)");
         for (int d = 0; d < numDocs; d++) {
             System.out.println("Doc " + (d + 1) + " \"" + docs[d] + "\"");
             System.out.println("   Vector: " + Arrays.toString(bow[d]));
         }
 
-        // ===================== TF-IDF =====================
 
         // STEP 1: Term Frequency  TF = Term Count / Total Words in Doc
         double[][] tf = new double[numDocs][vocabSize];
         int[] totalWords = new int[numDocs];
 
-        System.out.println("\n=== STEP 1: Term Frequency (TF) ===");
+        System.out.println("\n STEP 1: Term Frequency (TF)");
         System.out.println("TF = Term Count / Total Words in Doc");
         printHeader("Document", vocab);
         for (int d = 0; d < numDocs; d++) {
@@ -96,7 +95,7 @@ public class AI {
         // STEP 2: Inverse Document Frequency  IDF = log10(Total Docs / Docs Containing Term)
         double[] idf = new double[vocabSize];
 
-        System.out.println("\n=== STEP 2: Inverse Document Frequency (IDF) ===");
+        System.out.println("\nSTEP 2: Inverse Document Frequency (IDF) ");
         System.out.println("IDF = log(Total Docs / Docs Containing Term)");
         System.out.printf("%-14s%-12s%-16s%-18s%-10s%n",
                 "Term", "Total Docs", "Docs with Term", "IDF Calculation", "Final IDF");
@@ -112,7 +111,7 @@ public class AI {
         }
 
         // STEP 3: TF-IDF Matrix  TF-IDF = TF x IDF
-        System.out.println("\n=== STEP 3: The TF-IDF Matrix ===");
+        System.out.println("\nSTEP 3: The TF-IDF Matrix");
         System.out.println("TF-IDF = TF x IDF");
         List<String> headerWithIdf = new ArrayList<>();
         for (int w = 0; w < vocabSize; w++) {
