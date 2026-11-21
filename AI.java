@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class BagOfWords {
+public class AI {
 
     public static void main(String[] args) {
 
